@@ -7,6 +7,7 @@
 #include"BLM.h"
 #include"Fluid3.h"
 #include"SPH.h"
+#include"Flip.h"
 
 //window settings
 GLFWwindow* window;
@@ -16,8 +17,8 @@ float aspectRatio = float(screenHeight) / screenWidth;
 const bool fullScreen = false;
 const int FPS = 60;
 
-void update(float dt, SPH& water);
-void draw(Shader& render2d, Shader& renderPartical, SPH& water);
+void update(float dt, Flip& water);
+void draw(Shader& render2d, Shader& renderPartical, Flip& water);
 
 int main()
 {
@@ -55,7 +56,7 @@ int main()
 	Shader render2d("Shaders/render2d.vert", "Shaders/render2d.frag");
 	Shader renderPartical("Shaders/renderPartical.vert", "Shaders/renderPartical.frag");
 	
-	SPH water(500);
+	Flip water(40, 20, 300);
 
 	//main loop
 	float prevFrame = 0;
@@ -77,9 +78,9 @@ int main()
 	return 0;
 }
 
-void update(float dt, SPH& water)
+void update(float dt, Flip& water)
 {
-	water.input(window, screenWidth, screenHeight);
+	water.input(window, screenWidth, screenHeight, dt);
 	if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS)
 	{
 		std::cout << "s";
@@ -87,7 +88,7 @@ void update(float dt, SPH& water)
 	water.integrate(dt);
 }
 
-void draw(Shader& render2d, Shader& renderPartical, SPH& water)
+void draw(Shader& render2d, Shader& renderPartical, Flip& water)
 {
 	// Clean buffers
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

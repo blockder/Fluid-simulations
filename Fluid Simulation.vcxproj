@@ -143,6 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Flip.cpp" />
     <ClCompile Include="Fluid.cpp" />
     <ClCompile Include="BLM.cpp" />
     <ClCompile Include="Fluid3.cpp" />
@@ -156,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cell.h" />
+    <ClInclude Include="Flip.h" />
     <ClInclude Include="Fluid.h" />
     <ClInclude Include="BLM.h" />
     <ClInclude Include="Fluid3.h" />

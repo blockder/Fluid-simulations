@@ -1,4 +1,5 @@
 #include"ParticalSystem.h"
+#include"Partical.h"
 
 ParticalSystem::ParticalSystem(Mesh shape, GLuint texture)
 {
@@ -81,6 +82,14 @@ void ParticalSystem::loadParticals(std::vector<Partical>& particals)
 		pstate.scale = partical.mesh.scale.x;
 		ps.push_back(pstate);
 	}
+
+	//put data in VBO 
+	glNamedBufferData(particalVBO, sizeof(ParticalState) * ps.size(), ps.data(), GL_DYNAMIC_DRAW);
+}
+
+void ParticalSystem::loadParticals(std::vector<ParticalState>& ps)
+{
+	this->ps = ps;
 
 	//put data in VBO 
 	glNamedBufferData(particalVBO, sizeof(ParticalState) * ps.size(), ps.data(), GL_DYNAMIC_DRAW);

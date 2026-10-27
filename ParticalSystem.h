@@ -1,7 +1,8 @@
 #pragma once
-#include"Partical.h"
+#include<glm/glm.hpp>
+#include"Mesh.h"
 
-
+class Partical;
 struct ParticalState
 {
 	glm::vec2 position;
@@ -20,6 +21,7 @@ public:
 	ParticalSystem(Mesh shape, GLuint texture);
 
 	void loadParticals(std::vector<Partical>& particals);
+	void loadParticals(std::vector<ParticalState>& ps);
 	void draw(Shader& renderPartical, float aspectRatio);
 private:
 	GLuint VAO;
